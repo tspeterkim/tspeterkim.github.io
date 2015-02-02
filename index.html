@@ -8,7 +8,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Boxify: Free HTML5/CSS3 Template by Peter Finlan</title>
+        <script src="js/modernizr.js"></script> <!-- Modernizr -->
+        <link rel="icon" type="image/png" href="img/paper_plane.png">
+		<title>Peter Kim</title>
 		<meta name="description" content="A free HTML5/CSS3 template made exclusively for Codrops by Peter Finlan" />
 		<meta name="keywords" content="html5 template, css3, one page, animations, agency, portfolio, web design" />
 		<meta name="author" content="Peter Finlan" />
@@ -50,7 +52,7 @@
 				<div class="container">
 					<div class="row nav-wrapper">
 						<div class="col-md-6 col-sm-6 col-xs-6 text-left">
-							<a href="#"><img src="img/logo-white.png" alt="Boxify Logo"></a>
+							<a href="#"><img src="img/logo1.png" id="main_logo" alt="Boxify Logo"></a>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
 							<p>MENU</p><a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
@@ -58,19 +60,99 @@
 					</div>
 					<div class="row hero-content">
 						<div class="col-md-12">
-							<h1 class="animated fadeInDown">The Life and Passions of Peter Kim</h1>
-							<a href="http://tympanus.net/codrops/?p=22554" class="use-btn animated fadeInUp">Use it for free</a> <a href="#about" class="learn-btn animated fadeInUp">Learn more <i class="fa fa-arrow-down"></i></a>
+							<h1 class="animated fadeInDown">My Complicated Life & Conflicting Passions</h1>
+							<!--<a href="../docs/resume.pdf" class="use-btn animated fadeInUp">My Resume</a>-->
+                            <a href="#about" class="learn-btn animated fadeInUp">Learn more! <i class="fa fa-arrow-down"></i></a>
 						</div>
 					</div>
 				</div>
 			</section>
 		</header>
-		<section class="video" id="about">
+		<section id="about">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
-						<h1><a href="http://www.youtube.com/embed/9No-FiEInLA?autoplay=1&wmode=opaque&fs=1" class="youtube-media"><i class="fa fa-play-circle-o"></i> Watch the Video</a></h1>
+						<h1>A Timeline About Myself</h1>
+                        <div id="timeline_message">I guarantee that you've never seen a timeline as international as mine.</div>
 					</div>
+                    	<section id="cd-timeline" class="cd-container">
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-picture">
+                                    <img src="img/cd-icon-picture.svg" alt="Picture">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Title of section 1</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                                    <a href="#0" class="cd-read-more">Read more</a>
+                                    <span class="cd-date">Jan 14</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-movie">
+                                    <img src="img/cd-icon-movie.svg" alt="Movie">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Title of section 2</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+                                    <a href="#0" class="cd-read-more">Read more</a>
+                                    <span class="cd-date">Jan 18</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-picture">
+                                    <img src="img/cd-icon-picture.svg" alt="Picture">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Title of section 3</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+                                    <a href="#0" class="cd-read-more">Read more</a>
+                                    <span class="cd-date">Jan 24</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-location">
+                                    <img src="img/cd-icon-location.svg" alt="Location">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Title of section 4</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                                    <a href="#0" class="cd-read-more">Read more</a>
+                                    <span class="cd-date">Feb 14</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-location">
+                                    <img src="img/cd-icon-location.svg" alt="Location">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Title of section 5</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+                                    <a href="#0" class="cd-read-more">Read more</a>
+                                    <span class="cd-date">Feb 18</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-movie">
+                                    <img src="img/cd-icon-movie.svg" alt="Movie">
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Final Section</h2>
+                                    <p>This is the content of the last section</p>
+                                    <span class="cd-date">Feb 26</span>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+                        </section> <!-- cd-timeline -->
 				</div>
 			</div>
 		</section>
@@ -321,8 +403,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center wp4">
-						<h1>Seen Enough?</h1>
-						<a href="http://tympanus.net/codrops/?p=22554" class="download-btn">Download! <i class="fa fa-download"></i></a>
+						<h1>Let's have Coffee!</h1>
+                        <div id="contact_me_subtitle"> Need help with a website, or got an internship? <a href="https://www.youtube.com/watch?v=SeldwfOwuL8" class="youtube-media">I'll make you an offer you can't refuse.</a></div>
+						<a href="mailto:peterkim95@ucla.edu" class="download-btn">Email Me <i class="fa fa-coffee"></i></a>
+                        
 					</div>
 				</div>
 			</div>
@@ -332,16 +416,16 @@
 				<div class="row">
 					<div class="col-md-5">
 						<h1 class="footer-logo">
-						<img src="img/logo-blue.png" alt="Footer Logo Blue">
+						<img src="img/logo2.png" id="footer_logo" alt="Footer Logo Blue">
 						</h1>
-						<p>© Boxify 2015 - <a href="http://tympanus.net/codrops/licensing/">Licence</a> - Designed &amp; Developed by <a href="http://www.peterfinlan.com/">Peter Finlan</a></p>
+						<p>© Peter Kim 2015 - <a href="http://en.wikipedia.org/wiki/MIT_License">Licence</a> - Designed &amp; Developed by <a href="http://www.peterfinlan.com/">Peter Kim</a></p>
 					</div>
 					<div class="col-md-7">
 						<ul class="footer-nav">
-							<li><a href="#about">About</a></li>
-							<li><a href="#features">Features</a></li>
-							<li><a href="#screenshots">Screenshots</a></li>
-							<li><a href="#download">Download</a></li>
+							<li><a href="#about">About Me</a></li>
+							<li><a href="#features">Experience</a></li>
+							<li><a href="#screenshots">Photos</a></li>
+							<li><a href="#download">Contact Me</a></li>
 						</ul>
 					</div>
 				</div>
@@ -350,12 +434,12 @@
 		<div class="overlay overlay-boxify">
 			<nav>
 				<ul>
-					<li><a href="#about"><i class="fa fa-heart"></i>About</a></li>
-					<li><a href="#features"><i class="fa fa-flash"></i>Features</a></li>
+					<li><a href="#about"><i class="fa fa-heart"></i>About Me</a></li>
+					<li><a href="#features"><i class="fa fa-code-fork"></i>Experience</a></li>
 				</ul>
 				<ul>
-					<li><a href="#screenshots"><i class="fa fa-desktop"></i>Screenshots</a></li>
-					<li><a href="#download"><i class="fa fa-download"></i>Download</a></li>
+					<li><a href="#screenshots"><i class="fa fa-image"></i>Photos</a></li>
+					<li><a href="#download"><i class="fa fa-phone"></i>Contact Me</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -369,6 +453,7 @@
 		<script src="js/waypoints.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/min/scripts-min.js"></script>
+        <script src="js/main.js"></script>
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
