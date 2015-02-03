@@ -1149,7 +1149,7 @@ Main components
 }
 @media only screen and (min-width: 1170px) {
   #cd-timeline {
-    margin-top: 7em;
+    margin-top:11em;
     margin-bottom: 3em;
   }
   #cd-timeline::before {
@@ -1204,14 +1204,17 @@ Main components
   margin-left: -12px;
   margin-top: -12px;
 }
-.cd-timeline-img.cd-picture {
-  background: #75ce66;
+.cd-timeline-img.cd-baby {
+  background: #f0ca45;
 }
-.cd-timeline-img.cd-movie {
-  background: #c03b44;
+.cd-timeline-img.cd-country {
+  background: #92AAF0;
+}
+.cd-timeline-img.cd-microsoft {
+  background: black;
 }
 .cd-timeline-img.cd-location {
-  background: #f0ca45;
+  background: #75ce66;
 }
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
