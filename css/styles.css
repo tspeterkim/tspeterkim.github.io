@@ -581,8 +581,8 @@ Hero
     position: relative;
     padding: 60px 0 60px 0;
     min-height: 800px;
-    background: rgb(40, 70, 102) url('../img/brussels.jpg') no-repeat center center;
-    background-size: cover;
+    background: rgb(40, 70, 102) url('../img/PETER1.jpg') no-repeat center center;
+    #background-size: cover;
     color: #fff;
 }
 .hero h1 {
@@ -658,7 +658,7 @@ Features Slider
 .features-bg {
     position: relative;
     min-height: 400px;
-    background: url('../img/features-intro-01.jpg') no-repeat center center;
+    background: url('../img/nothing.jpg') no-repeat center center;
     background-size: cover;
 }
 .features-img {
@@ -1095,6 +1095,9 @@ Waypoints
 /* ==========================================================================
 Custom
 ========================================================================== */
+
+
+
 #main_logo{
     width:150px;
 }    
