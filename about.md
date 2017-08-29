@@ -4,15 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+My name is Peter Kim and I am currently a graduate student at UCLA, specializing in Artificial Intelligence. As a deep learning enthusiast, I am certain that neural networks will fundamentally change industries, especially healthcare (reactive to preventative) and transportation (manned to autonomous). In the future, I hope to one day build a decentralized hospital (look out for a blog post about this coming soon...)
