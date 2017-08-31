@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Deep Learnin' with Peter Kim
+title: Deep Learning with Peter Kim
 email: peterkim@cs.ucla.edu
 description: "Tutorials and Thoughts"
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -26,7 +26,7 @@ markdown: kramdown
 permalink: pretty
 theme: minima
 plugins:
-  - jekyll-feed
+  # - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
