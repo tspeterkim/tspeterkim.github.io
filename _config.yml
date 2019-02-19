@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Deep Learning with Peter Kim
+title: Yet Another Tech Blog by Peter Kim
 email: peterkim@cs.ucla.edu
-description: "Tutorials and Thoughts"
+description: "Tutorials & Thoughts"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
@@ -28,6 +28,8 @@ theme: minima
 plugins:
   # - jekyll-feed
 
+sass:
+    sass_dir: _sass/
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
