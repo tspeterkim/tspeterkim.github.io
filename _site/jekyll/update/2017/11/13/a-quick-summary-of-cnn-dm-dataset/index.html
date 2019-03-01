@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A Quick Summary of &quot;A Thorough Examination of the CNN/Daily Mail Reading Comprehension Task&quot;</title>
+  <meta name="description" content="Teaching a machine how to read and comprehend has remained an elusive task in Natural Language Processing (NLP). The majority of information and knowledge th...">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/11/13/a-quick-summary-of-cnn-dm-dataset/">
+  <link rel="alternate" type="application/rss+xml" title="Yet Another Tech Blog by Peter Kim" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">Yet Another Tech Blog by Peter Kim</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">A Quick Summary of &quot;A Thorough Examination of the CNN/Daily Mail Reading Comprehension Task&quot;</h1>
+    <p class="post-meta">
+      <time datetime="2017-11-13T20:50:23+09:00" itemprop="datePublished">
+        
+        Nov 13, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <style>
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+}
+
+</style>
+
+<p>Teaching a machine how to read and comprehend has remained an elusive task in Natural Language Processing (NLP). The majority of information and knowledge that humanity has gathered thus far is stored in the form of plain text, and thus, the task of Reading Comprehension (RC) and Question Answering (QA) based on those text is a crucial component in not only NLP, but General Artificial Intelligence as a whole. Historically, large and realistic datasets have played a critical role for driving fields forward, such as ImageNet for object recognition. So when DeepMind researchers released the first large scale dataset for reading comprehension, it was certainly a historic moment. However, we may need to curb our enthusiasm - a more thorough analysis of their dataset, dubbed CNN/Daily Mail, reveals that: i) this dataset is easier than previously realized, ii) there exists significant noise in the dataset, and iii) current neural networks, like the one presented here, have essentially reached the performance ceiling on this dataset.</p>
+
+<h2 id="the-question-answering-task">The Question Answering Task</h2>
+
+<p>DeepMind’s RC datasets are made by exploiting online news articles from CNN and Daily Mail, and their matching summaries. Let’s look at an example:</p>
+
+<p><img src="/images/11-13-17/single_cnn_example.png" alt="fig1" class="center-image" /></p>
+<center><b>Figure 1: A single training example from the CNN dataset.</b></center>
+<p><br />
+A single example is tuple of three elements: the passage <i>p</i>, the question <i>q</i>, and the answer <i>a</i>. The passage is the news article, and the question is formed in Cloze style, where a single entity in the bullet summaries is replaced with a placeholder (@placeholder). The replaced entity becomes the correct answer. The inference goal here is to predict the answer entity (Y) from all the appearing entities in the passage, given the passage and question (X).</p>
+
+<p>As an important preprocessing step, the text is lowercased, tokenized, and named entity recognition and coreference resolution have been applied. This means that all entities are replaced with abstract entity markers (@entity<i>n</i>) according to the constructed coreference chain. The folks at DeepMind argue that such a process ensures that their models are understanding the given passage, as opposed to applying world knowledge or co-occurrence (and not “reading” the passage).</p>
+
+<p>The two datasets are summarized in the following table:</p>
+
+<p><img src="/images/11-13-17/data_stats.png" alt="table1" class="center-image" /></p>
+<center><b>Table 1: Data statistics of the CNN and Daily Mail</b></center>
+<p><br />
+There are around 380k and 880k training examples (passage, question, answer) for the CNN and Daily Mail dataset, respectively. The average number of tokens, or words, for each passage and question is also shown. Finally, the average number of entities that appear in a single passage is also given.</p>
+
+<h2 id="the-two-models">The Two Models</h2>
+
+<p>In this section, two models are presented and evaluated to set a lower bound of the performance of current NLP systems. First, a conventional feature-based classifier is built by designing a feature vector f_p,q(e) for each candidate entity e, and learning a weight vector theta such that the correct answer <i>a</i> is ranked higher than all other candidate entities:</p>
+
+<p><img src="/images/11-13-17/conventional_classifier.png" alt="eqn1" class="center-image" /></p>
+
+<p>More interestingly, let’s examine a neural network model that is a modified version of the Attentive Reader model proposed by DeepMind. To make every step clearer, I have accompanied code snippets from my TensorFlow-based model <a href="https://github.com/peterkim95/attentive-reader">here</a>. The system can be described by the three following steps:</p>
+
+<h3 id="encoding">Encoding</h3>
+
+<p>Every token is mapped to a d-dimensional vector via an embedding matrix that was obtained from pretrained GloVe embeddings. For the passage, we use a shallow bidirectional recurrent neural network (RNN) using Gated Recurrent Unit (GRU) cells. A GRU cell performs similarly to a Long Short Term Memory (LSTM) cell but is computationally cheaper. The outputs from the forward and backward RNN are concatenated together to form the final passage encoding.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">'d_encoder'</span><span class="p">):</span> <span class="c"># Encoding Step for Passage (d_ for document)</span>
+  <span class="c"># Apply embeddings: [batch, max passage length in batch, GloVe Dim]</span>
+  <span class="n">d_embed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">d_input</span><span class="p">)</span>
+  <span class="n">d_cell_fw</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">GRUCell</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+  <span class="n">d_cell_bw</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">GRUCell</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+  <span class="n">d_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">bidirectional_dynamic_rnn</span><span class="p">(</span><span class="n">d_cell_fw</span><span class="p">,</span> <span class="n">d_cell_bw</span><span class="p">,</span>
+    <span class="n">d_embed</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="c"># Create bidirectional rnn</span>
+  <span class="n">d_output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">d_outputs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="c"># [batch, len, h], len is the max passage length, and h is the hidden size</span></code></pre></figure>
+
+<p>We do the exact same to encode the question, but instead of concatenating the hidden states for every single word, only the final outputs are concatenated.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">'q_encoder'</span><span class="p">):</span> <span class="c"># Encoding Step for Question</span>
+  <span class="c"># Apply Embeddings: batch, max passage length in batch, GloVe Dim]</span>
+  <span class="n">q_embed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">q_input</span><span class="p">)</span>
+  <span class="n">q_cell_fw</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">GRUCell</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+  <span class="n">q_cell_bw</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">GRUCell</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+  <span class="n">q_outputs</span><span class="p">,</span> <span class="n">q_laststates</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">bidirectional_dynamic_rnn</span><span class="p">(</span><span class="n">q_cell_fw</span><span class="p">,</span> <span class="n">q_cell_bw</span><span class="p">,</span>
+    <span class="n">q_embed</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="c"># Create bidirectional rnn</span>
+  <span class="n">q_output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">q_laststates</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c"># [batch, h]</span></code></pre></figure>
+
+<h3 id="attention">Attention</h3>
+
+<p>Here, we want to compare the question embedding and the passage embedding, and narrow down the entities that are relevant to the question.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">'bilinear'</span><span class="p">):</span> <span class="c"># Bilinear Layer (Attention Step)</span>
+  <span class="c"># M computes the similarity between each passage word and the entire question encoding</span>
+  <span class="n">M</span> <span class="o">=</span> <span class="n">d_output</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">q_output</span><span class="p">,</span> <span class="n">W_bilinear</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># [batch, h] -&gt; [batch, 1, h]</span>
+  <span class="c"># alpha represents the normalized weights representing how relevant the passage word is to the question</span>
+  <span class="n">alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> <span class="c"># [batch, len]</span>
+  <span class="c"># this output contains the weighted combination of all contextual embeddings</span>
+  <span class="n">bilinear_output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">d_output</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># [batch, h]</span></code></pre></figure>
+
+<h3 id="prediction">Prediction</h3>
+
+<p>Finally, the output from the previous step is fed into a dense layer and normalized with a softmax function.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">'dense'</span><span class="p">):</span> <span class="c"># Prediction Step</span>
+  <span class="c"># the final output has dimension [batch, entity#], giving the probabilities of an entity being the answer for examples</span>
+  <span class="n">final_prob</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">bilinear_output</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">num_labels</span><span class="p">,</span>  
+    <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">random_uniform_initializer</span><span class="p">(</span><span class="n">minval</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span> <span class="c"># [batch, entity#]</span></code></pre></figure>
+
+<h2 id="results">Results</h2>
+
+<p>The final results are presented in the table below:</p>
+
+<p><img src="/images/11-13-17/final_results.png" alt="table2" class="center-image" /></p>
+<center><b>Table 2: Performance of models on the CNN and Daily Mail datasets.</b></center>
+<p><br />
+The conventional feature-based classifier obtains a 67.9% accuracy on the CNN test set, which actually outperforms the best neural network model from DeepMind. This implies that the learning task at hand might not be as difficult as suggested, as a simple feature set can cover many of the examples. In addition, our modified attentive reader surpasses the DeepMind’s previous results by a large margin (over 5%).</p>
+
+<h2 id="in-depth-analysis">In-Depth Analysis</h2>
+
+<p>So now that we have achieved good results through both of our models, let us ask the following questions: i) Since the dataset was created synthetically, what proportion of questions are trivial to answer, and how many are noisy and not answerable? ii) What have these models learned? iii) What are the prospects of improving them? To answer these, we randomly sample 100 examples from the CNN dev dataset, to perform a breakdown of the examples.</p>
+
+<p>After careful analysis, the 100 examples can be roughly classified into the following categories:</p>
+
+<ol>
+  <li>Exact Match - The nearest words around the placeholder in the question also appear identically in the passage, in which case, the answer is self-evident.</li>
+  <li>Sentence-level paraphrase - The question is a paraphrasing of exactly one sentence in the passage, and the answer can definitely be identified in the sentence.</li>
+  <li>Partial Clue - No semantic match between the question and document sentences exist but the answer can be easily inferred through partial clues such as word and concept overlaps.</li>
+  <li>Multiple sentences - Multiple sentences in the passage must be examined to determine the answer.</li>
+  <li>Coreference errors - This category refers to examples with critical coreference errors for the answer entity or other key entities in the question. Not answerable.</li>
+  <li>Ambiguous / Very Hard - This category includes examples for which even humans cannot answer correctly (confidently). Not answerable.</li>
+</ol>
+
+<p>The following table presents the distribution of these examples based on their respective categories:</p>
+
+<p><img src="/images/11-13-17/breakdown.png" alt="table3" class="center-image" /></p>
+<center><b>Table 3: An estimate of the breakdown of the sampled 100 examples from the CNN dev dataset.</b></center>
+<p><br />
+As one can clearly see, the last two “not answerable” categories account for 25% of this sample, thus setting the barrier for training models with an accuracy match above 75%. Further, only two examples require examination of multiple sentences for inference, suggesting that there is a lower rate of challenging questions than DeepMind originally showcased. Thus, it is reasonable to assume that for most of the “answerable” cases, the inference is based upon identifying the most relevant sentence.</p>
+
+<p>Consequently, we can further analyze the predictions of our two systems, based on the same 100 examples and categorization. The results are as follows:</p>
+
+<p><img src="/images/11-13-17/percategory.png" alt="table3" class="center-image" /></p>
+<center><b>Table 4: Per-category performance of our two systems on 100 examples from CNN dev dataset</b></center>
+<p><br />
+We can observe the following:</p>
+<ul>
+  <li>The exact match cases are very simple to learn and both systems get 100% correct.</li>
+  <li>Both systems perform poorly for the coreference errors and ambiguous/hard cases.</li>
+  <li>The two systems mainly differ in paraphrasing and partial clue cases. This clearly demonstrates that neural networks are better capable of learning semantic matches involving paraphrasing or lexical variations between sentences.</li>
+  <li>The neural net model seems to achieve near-optimal performance on all of the answerable cases.</li>
+</ul>
+
+<p>Hence, due to the harsh upper bound on accuracy, set by the “not answerable” cases, it will be an unfruitful endeavor to explore more sophisticated NLP systems for this dataset.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Overall, this post was about the careful examination of the CNN/Daily Mail reading comprehension task. The two systems presented here demonstrates state-of-the-art results and an analysis by hand is carried out on a random sample of the CNN dataset. Even though the datasets are certainly valuable for their sheer size, it is evident that i) there exists significant noise due to the datasets’ method of data creation and coreference errors, ii) current neural network models have basically reached the performance ceiling iii) the reasoning required for inference is still quite simple.</p>
+
+<p>&lt; References &gt; <br />
+Karl Moritz Hermann, Tomas Kocisky, Edward Grefenstette, Lasse Espeholt, Will Kay, Mustafa Suleyman, and Phil Blunsom. 2015. Teaching machines to read and comprehend. In Advances in Neural Information Processing Systems (NIPS), pages 1684–1692. <br /></p>
+
+<p>Danqi Chen, Jason Bolton, and Christopher D. Manning. A thorough examination of the cnn/dailymail reading comprehension task. In Association for Computational Linguistics (ACL), 2016.</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://dl-blog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Yet Another Tech Blog by Peter Kim</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Yet Another Tech Blog by Peter Kim
+            
+            </li>
+            
+            <li><a href="mailto:peterkim@cs.ucla.edu">peterkim@cs.ucla.edu</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/peterkim95"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">peterkim95</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Tutorials &amp; Thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

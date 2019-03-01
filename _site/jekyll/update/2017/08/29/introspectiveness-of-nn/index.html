@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Introspectiveness of Neural Networks</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/08/29/introspectiveness-of-nn/">
+  <link rel="alternate" type="application/rss+xml" title="Yet Another Tech Blog by Peter Kim" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">Yet Another Tech Blog by Peter Kim</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">The Introspectiveness of Neural Networks</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-30T07:50:00+09:00" itemprop="datePublished">
+        
+        Aug 29, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <style>
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+}
+
+</style>
+
+<p>Neural networks are wonderful things, to say the least. They are undoubtedly the state-of-the-art techniques for many applications (if not all) ranging from language translations all the way to self-driving cars. Modern day neural networks, combined with other machine learning concepts such as reinforcement learning, have been able to crush the best human Go players in the world. Go is a game that has more possible board configurations (10^170 to be exact) than the number of atoms in the universe! In fact, just a little over two weeks ago, the Elon Musk-backed research lab OpenAI revealed an AI bot in the popular game of Dota 2 that just manhandled professional e-sport players in 1-vs-1 matches.</p>
+
+<p><img src="/images/uber-web-tool.gif" alt="uber-web" />
+<b>A web-based tool that the Data Visualization team uses over at Uber to explore self-driving car research data</b></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wpa5wyutpGc" frameborder="0" allowfullscreen=""></iframe>
+<p><b>OpenAI’s video showcasing all the different tactics/behaviors that its bot learned on its own. Mind you, there were no hundreds of if statements to program these behaviors like one would usually do in a traditional programming setting. The bot just played a lifetime’s worth 1-vs-1 matches against itself with minimal supervision from the researchers. And it just learns.</b></p>
+
+<p>To be honest, I can dedicate this entire post to the remarkable accomplishments of neural networks. But now, I want to talk about neural networks from a different perspective, mainly it’s origin story: how it came to be and why it’s our best shot at truly intelligent machines and why it has more far-reaching consequences than we might have imagined.</p>
+
+<p>Let’s go back to what originally inspired neural networks in the first place, our brains. We are all born with these insanely powerful and versatile computers in our heads that allow us to learn truly anything. We immediately learn to see and hear without any effort, and we can pretty complex math and physics, and finally, we can learn to create some of the most impressive engineering feats all the way from smartphones to reusable rockets.</p>
+
+<p>So the brain can do all these different and amazing things. The million dollar question is, how? A reasonable guess would be that the brain works like a computer with a thousand different programs to do a thousand different things. A crude example would be that if I learnt how to speak French, the brain would generate some sort of French speaking module and just piece it in with the thousand different other modules that I already knew how to do.</p>
+
+<p>On the other hand, what if the exact opposite is true? Instead, the brain only knows one learning algorithm that is capable of learning, well, anything. Although this is still a hypothesis, it is one that has some really mind-blowing evidences. Let me share with you my favorite:</p>
+
+<p>In a 1992 neuroscience paper by Roe et al., they rewired a ferret’s retinal input into the auditory cortex [1]. Your auditory cortex is responsible for processing the sound signals you hear, allowing you to understand basic words and speech. The result of this neural-rewiring is nothing short of jaw-dropping: the auditory cortex learned how to process visual information coming from the ferret’s eyes, and in every sense, learned how to see.</p>
+
+<p><img src="/images/roe.png" alt="roe-experiment-result" />
+<b>A neural-rewiring of the brain. This is the biological equivalent of plugging your webcam input into your sound card of your computer. [2]</b></p>
+
+<p>In another earlier neural-rewiring experiment by Metin and Frost in 1989, they rewired the same retinal input of hamsters (instead of ferrets) into the somatosensory cortex, which is responsible for your sense of touch [3]. As you might have guessed, these hamsters learned how to see without any issues. Overall, if the same section of the physical brain tissue can learn how to see, hear, and touch, surely, there must be a general learning algorithm that can do all these things, and more. At least, it seems very unlikely that the brain has three different learning algorithms for your sight, sound, and touch.</p>
+
+<p>This brings me to the ultimate quest of AI and truly intelligent machines. If we can figure out and understand the brain’s learning algorithm and develop some close approximation to it for a computer, then this might be the best shot we have towards Artificial <i>General</i> Intelligence, one that can help us someday solve humanity’s problems in ways such as preventing global warming or outbreaks of diseases.</p>
+
+<p>It’s hard not to get carried away here because even the slightest progress towards such general intelligence can tremendously benefit our world. (As a positive person, I assume here that AI will be used mainly for the good of mankind. I understand that this might not be the case but that topic is best saved for another blog post). However, the sad truth is that we are nowhere near achieving the ultimate dream of general intelligence, even with the ground-breaking research in neural networks today. This is mainly because, we still are nowhere near understanding the full complexities of how our brain learns, other than the fact that there’s this general learning algorithm. In fact, do a google search right now for “how does the brain work”. The results can go into very good detail about the structure and components of the brain but there’s definitely something left to be desired in how it all comes together. Just take a look at this short summary from the U.S. National Library of Medicine - PubMed Health Journal [4]:</p>
+
+<blockquote>
+  <p>The brain works like a big computer. It processes information that it receives from the senses and body, and sends messages back to the body. But the brain can do much more than a machine can: humans think and experience emotions with their brain, and it is the root of human intelligence.</p>
+</blockquote>
+
+<p>It certainly is the root of human intelligence, which is why I am so insistent that unlocking the secrets of the brain can allow us to design better neural networks. I’ll give you another favorite example to prove this.</p>
+
+<p>In 1959, Hubel and Wiesel were studying the visual cortex of a cat, by observing the early visual area of the cat brain, as the cat was looking at specific patterns on the screen [5].</p>
+
+<p><img src="/images/hubel-experiment-cat.jpg" alt="hubel-cat" />
+<br /><b>High-level setup of the Hubel and Wiesel’s experiment.</b></p>
+
+<p>They realized that a neuron/cell would only turn on for edges in a particular orientation and that orientation only. Through this, they devised a model of how the visual cortex processes information. They found that nearby cells in the cortex represented and processed nearby regions in the visual field, preserving the spatial information of whatever the cat was seeing. Further, they found that were was an entire hierarchy of rows of cells. The most low level cells were named simple cells as they only reacted to a particular orientation of an edge. Through all these experiments, Hubel and Wiesel hypothesized that the visual cortex can be described by a hierarchical organization of simple cells that fed into complex cells which have more complicated activations and can form higher level representations. These simple cells would have translationally invariant and locally receptive fields.</p>
+
+<p><img src="/images/hubel.jpg" alt="hubel-hierarchy" class="center-image" />
+<br /><b>Feature hierarchy of cells that processes visual information.</b></p>
+
+<p>(At this point, if you are aware of how Convolutional Neural Networks (CNNs) work, you should already see the uncanny resemblance) Hubel and Wiesel eventually won a nobel prize for their amazing discoveries, and it inspired the computer vision community to reproduce this result. In the 1980s, Fukushima came up with the Neocognitron, which was basically a multilayered neural network for pattern recognition tasks. Eventually, Yann LeCun et al. built the first backpropogatable CNN, famously dubbed LeNet, in 1998. Fast-forwarding to today, CNNs not only dominate the computer vision world in terms of raw benchmark performance whether it’s MNIST or ImageNet, but is also deployed in tasks such as language translation (check out https://www.deepl.com/translator - they use a CNN over the more traditional RNN, and supposedly get better results).</p>
+
+<p>The previous example was quite dense so let me summarize: the understanding of <i>how</i> the visual cortex works (not simply where it is inside the brain) allowed us to essentially come up with CNNs, a far more versatile version of a neural network for computer vision.</p>
+
+<p>So far we’ve taken a look at the origin story of neural networks. The single learning algorithm hypothesis and its mind-blowing evidence motivates neural networks as not only a powerful learning algorithm, but perhaps <i>the</i> algorithm that general intelligence can be built upon. Plus, we examined a Nobel-prize worthy discovery into how the visual cortex processes images inside the brain. More importantly, we saw how this inspired the CNN that dominates today’s world of computer vision.</p>
+
+<p>These two things constantly remind me of the introspectiveness of neural networks: their advancement relies on not only progress in machine learning, but also progress in neuroscience. The latter is undoubtedly the harder one to achieve, but also the more likely to fundamentally impact deep learning, and therefore should never be lapsed, especially in the minds of individuals interested in deep learning research and careers.</p>
+
+<p>&lt; References &gt;</p>
+
+<p>[1] Roe, A. W., Pallas, S. L., Kwon, Y. H. &amp; Sur, M. Visual projections routed to the auditory pathway in ferrets: receptive felds of visual neurons in the primary auditory cortex. J. Neurosci. 12, 3651±3664 (1992). <br />
+[2] A. Ng, Lecture 4.2-Neurons and the brain: The “one learning algorithm” hypothesis., (2012) <br />
+[3]  Metin, C. &amp; Frost, D. Visual responses of neurons in somatosensory cortex of hamsters with experimentally induced retinal projections to somatosensory thalamus. Proc. Natl Acad. Sci. USA 86, 357–361 (1989). <br />
+[4] “How Does the Brain Work?” National Center for Biotechnology Information, U.S. National Library of Medicine, 29 Dec. 2016, www.ncbi.nlm.nih.gov/pubmedhealth/PMH0072486/. <br />
+[5] Hubel, D. H. &amp; Wiesel, T. N. (1959). Receptive fields of single neurons in the cat’s striate cortex. J. Physiol. 148, 574-591.</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://dl-blog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Yet Another Tech Blog by Peter Kim</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Yet Another Tech Blog by Peter Kim
+            
+            </li>
+            
+            <li><a href="mailto:peterkim@cs.ucla.edu">peterkim@cs.ucla.edu</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/peterkim95"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">peterkim95</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Tutorials &amp; Thoughts</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
