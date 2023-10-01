@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Yet Another Tech Blog by Peter Kim
+title: Taeksang Kim
 email: peterkim@cs.ucla.edu
 description: "Tutorials & Thoughts"
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -35,7 +35,6 @@ sass:
 # to override the default setting.
 # exclude:
 #   - Gemfile
-#   - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
