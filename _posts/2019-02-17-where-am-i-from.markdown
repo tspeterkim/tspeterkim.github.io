@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title:  'Figuring out where I am from'
+title:  'Where am I from?'
 date:   2019-02-17 14:00:00 -0700
 categories: jekyll update
 ---
