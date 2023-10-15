@@ -9,8 +9,7 @@ layout: default
 
   {{ content }}
   <br>
-  <br>
-  <br>
+  <br><hr><br>
 
   <h2 class="post-list-heading">Patents</h2>
 
@@ -20,6 +19,8 @@ layout: default
     <li>Korean Pat. No. 10-0036443: Next watch prediction using GPT</li>
     <li>Korean Pat. No. 10-0184572: First hero optimization through reinforcement learning</li>
   </ul>
+
+  <br><hr><br>
 
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
@@ -41,5 +42,16 @@ layout: default
     </ul>
 
   {%- endif -%}
+
+  <br><hr><br>
+
+  <h2 class="post-list-heading">Miscellaneous</h2>
+
+  <ul class="post-list">
+    <li>I designed the first introductory ML course for employees at Buzzvil, a Korean advertising startup. The study became the most popular at the company, and I was <a href="https://www.buzzvil.com/career/culture\_blog/2MycROIWFmtzUxCmp8ysB0">interviewed</a> for my efforts.<li>
+    <li>I wrote <a href="https://tech.buzzvil.com/blog/optimizing-itemcf">a tech blog</a> on how to optimize Item-to-item collaborative filtering with sparse vectors and <a href="https://www.ray.io/">Ray</a>.</li>
+    <li>I gave an internal <a href="https://tech.buzzvil.com/seminar/tech-weekly-how-to-build-a-self-driving-car/">presentation</a> on building a neural net that could steer autonomously in <a href="https://carla.org/">CARLA</a>.</li>
+  </ul>
+
 
 </div>
