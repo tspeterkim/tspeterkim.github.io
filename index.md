@@ -6,7 +6,7 @@ layout: home
 comments: false
 ---
 
-<img src="../images/me.jpg" alt="me" style="width: 200px; float:right;"/>
+<img src="../images/me.jpg" alt="me" style="width:200px; float:left; padding-right:20px;"/>
 
 I am a Senior ML Engineer at [Coupang Play](https://www.coupangplay.com/), building the video recommendation system for the most popular streaming service in Korea.
 
@@ -14,6 +14,6 @@ Previously, I received an undergraduate and a master’s degree in computer scie
 
 I've also spent time recommending jobs at [LinkedIn](https://linkedin.com/), deploying a log monitoring tool at [PayPal](https://www.paypal.com/), and building the checkout page at [Ticketmaster](https://www.ticketmaster.com/).
 
-My Korean name is Taeksang (pronounced Tech Sang).
+My Korean name is 김택상, pronounced Kim Tech Sang.
 
 [[Full CV]](assets/cv.pdf)
