@@ -10,9 +10,9 @@ comments: false
 
 I am a Senior ML Engineer at [Coupang Play](https://www.coupangplay.com/), building the video recommendation system for the most popular South Korean streaming service.
 
-I fulfilled my South Korean military service by working as a ML Engineer for [Buzzvil](https://www.buzzvil.com/en), a leading mobile advertising company in South Korea.
+Previously, I worked on improving ad recommendations at [Buzzvil](https://www.buzzvil.com/en).
 
-Previously, I received an undergraduate and a master’s degree in computer science from [UCLA](https://www.ucla.edu/). I was at the UCLA NLP Lab, where I worked with [Wasi Ahmad](https://wasiahmad.github.io/) and [Kai-Wei Chang](http://web.cs.ucla.edu/~kwchang/).
+I received an undergraduate and a master’s degree in computer science from [UCLA](https://www.ucla.edu/). During my master's, I was part of the UCLA NLP Lab, where I worked with [Wasi Ahmad](https://wasiahmad.github.io/) and [Kai-Wei Chang](http://web.cs.ucla.edu/~kwchang/).
 
 I've also spent time recommending jobs at [LinkedIn](https://linkedin.com/), deploying a log monitoring tool at [PayPal](https://www.paypal.com/), and building the checkout page at [Ticketmaster](https://www.ticketmaster.com/).
 
