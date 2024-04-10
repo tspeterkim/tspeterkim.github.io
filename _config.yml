@@ -24,7 +24,8 @@ github_username: tspeterkim
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+# permalink: pretty
+permalink: /posts/:title
 theme: minima
 plugins:
   # - jekyll-feed
