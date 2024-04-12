@@ -329,7 +329,7 @@ so many divergent branches?
 
 Clearly, I'm still learning about the `ncu` profiler. I welcome any guidance on this area.
 
-## For Next Time - Privatization using Shared Memory
+## Possible Optimization - Privatization using Shared Memory
 
 As I finish writing this blog, I realize that my `struct Stat` doesn't need to hold the city char array. In which case,
 each struct will be 16 bytes (min, max, sum, count), and the entire array of statistics will be 16N bytes, 
