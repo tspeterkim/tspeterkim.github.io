@@ -20,10 +20,10 @@ enthusiasts to make it faster.
 
 ## Baseline in pure C++
 
-You can't improve what you don't measure. Since I'm going to be writing C++ anyways for CUDA, let's use a C++ baseline.
-My CUDA code should be faster than this.
+You can't improve what you don't measure. Since I'm going to be writing C++ anyways for CUDA, let's use a pure
+C++ baseline. My CUDA code should be faster than this.
 
-The approach is straight-forward: read the file line by line, parse it into the city and temperature, and accumulate
+The approach is straight-forward: read the file line by line, parse it to get the city and temperature, and accumulate
 them in a [STL map](https://cplusplus.com/reference/map/map/).
 
 {% highlight cpp %}
@@ -56,7 +56,7 @@ for (auto& pair : stationStats) {
 }
 {% endhighlight %}
 
-**This runs in 16.5 minutes.** Let's improve this.
+**This runs in 16.5 minutes.** Let's improve this with CUDA.
 
 ## Work Partitioning Approach
 
@@ -95,6 +95,8 @@ while (offset < size) {
     char buf[MAX_CITY_BYTE];
     file.read(buf, MAX_CITY_BYTE);
 
+    // Find the new line character in the vicinity. 
+    // That will be the boundary between this and the next offset.
     std::streamsize n = file.gcount();
     std::streamsize newline = -1;
     for (int i = n - 1; i >= 0; --i) {
@@ -208,7 +210,7 @@ for (int i = 0; i < parts[bx].length; i++) {   // bx is the global thread index
 }
 {% endhighlight %}
 
-It's not pretty. But it's necessary as we don't have the luxury of `getline`. After parsing each line, we now have a
+It's not pretty. But it's necessary as we don't have the luxury of a `getline`. After parsing each line, we now have a
 pair of strings; a city string `char city[]` and a temperature string `char floatstr[]`.
 (The latter requires a conversion from string to float and since we don't have `atof` in CUDA, I made my 
 [own](https://github.com/tspeterkim/cuda-1brc/blob/main/fast.cu#L55) again)
@@ -286,15 +288,16 @@ atomicAdd(&stats[stat_index].count, 1);
 
 All this just to do 4 atomic operations.
 
-## Benchmark
+## Profiling
 
-**On a V100, the CUDA solution runs in 16.8 seconds. Compared to the 16.5 minutes that our C++ baseline took, it's a
-60X improvement.** [Here](https://github.com/tspeterkim/cuda-1brc/blob/main/run.sh) is the script to reproduce this.
+**On a V100, the CUDA solution runs in 16.8 seconds. It's a 60X improvement compared to the 16.5 minutes for our 
+C++ baseline.** [Here](https://github.com/tspeterkim/cuda-1brc/blob/main/run.sh) is the script to reproduce this.
 
-Interestingly, the kernel is slower on a T4 (~8 seconds longer) and so I used `ncu` to profile on both devices.
+Interestingly, the kernel is ~1.5X slower on a T4, and so I used `ncu` to profile on both devices.
+One thing that caught my eye was the difference in control divergence.
 
 {% highlight shell %}
-> ncu fast data/measurements.txt 1000000 600000
+(v100) ~ ncu --section SourceCounters fast data/measurements.txt 1000000 600000
 ...
 Section: Source Counters
     ------------------------- ----------- --------------
@@ -305,7 +308,26 @@ Section: Source Counters
     Branch Efficiency                   %          92.73
     Avg. Divergent Branches                10,041,990.22
     ------------------------- ----------- --------------
+
+(t4) ~ ncu --section SourceCounters fast data/measurements.txt 1000000 600000
+...
+Section: Source Counters
+    ------------------------- ----------- --------------
+    Metric Name               Metric Unit   Metric Value
+    ------------------------- ----------- --------------
+    Branch Instructions Ratio           %           0.17
+    Branch Instructions              inst 53,870,435,921
+    Branch Efficiency                   %          92.73
+    Avg. Divergent Branches                20,156,806.42
+    ------------------------- ----------- --------------
 {% endhighlight %}
+
+I expected there to be a lot of control divergence (since I'm using ifs and loops everywhere in my kernel), but I did
+not expect the divergence to be worse on the T4. Compared to the V100, it has twice as many avg. divergent branches.
+Could this be a reason why the kernel runs more slowly on a T4? Also, why is the branch efficiency so high if there are
+so many divergent branches?
+
+Clearly, I'm still learning about the `ncu` profiler. I welcome any guidance on this area.
 
 ## For Next Time - Privatization using Shared Memory
 
@@ -313,9 +335,9 @@ As I finish writing this blog, I realize that my `struct Stat` doesn't need to h
 each struct will be 16 bytes (min, max, sum, count), and the entire array of statistics will be 16N bytes, 
 where N is the # of unique cities. 
 
-Here, N=41,343 (based on `data/weather_stations.csv`), and so the entire array is 66KB.
-This should be small enough to fit in shared memory (96KB per block for Volta). Then, each block can update a private 
-version of `stats` to reduce contention of our atomic operations. **This should lead to a faster solution.**
+Here, N=41k (based on `data/weather_stations.csv`), and so the entire array will be 66KB.
+This should be small enough to fit in shared memory (96KB per SM for Volta). Then, each block can update a private 
+version of `stats` to reduce contention of the atomic operations. **This should lead to a faster solution.**
 
 ## Takeaway
 
