@@ -8,12 +8,21 @@ comments: false
 
 <img src="../images/me.jpg" alt="me" style="width:200px; float:left; padding-right:20px;"/>
 
-I am a Senior ML Engineer at [Coupang Play](https://www.coupangplay.com/), building the video recommendation system for the most popular South Korean streaming service.
+I like ML and CUDA. I also like being useful.
 
-Previously, I worked on improving ad recommendations at [Buzzvil](https://www.buzzvil.com/en).
+I currently work at Coupang Play, training recommendation models and building artwork generators.
 
-I received an undergraduate and a master’s degree in computer science from [UCLA](https://www.ucla.edu/). During my master's, I was part of the UCLA NLP Lab, where I worked with [Wasi Ahmad](https://wasiahmad.github.io/) and [Kai-Wei Chang](http://web.cs.ucla.edu/~kwchang/).
 
-I've also spent time recommending jobs at [LinkedIn](https://linkedin.com/), deploying a log monitoring tool at [PayPal](https://www.paypal.com/), and building the checkout page at [Ticketmaster](https://www.ticketmaster.com/).
+[//]: # (I am a Senior ML Engineer at [Coupang Play]&#40;https://www.coupangplay.com/&#41;, building the video recommendation system for the most popular South Korean streaming service.)
+
+[//]: # ()
+[//]: # (Previously, I worked on improving ad recommendations at [Buzzvil]&#40;https://www.buzzvil.com/en&#41;.)
+
+[//]: # ()
+[//]: # (I received an undergraduate and a master’s degree in computer science from [UCLA]&#40;https://www.ucla.edu/&#41;. During my master's, I was part of the UCLA NLP Lab, where I worked with [Wasi Ahmad]&#40;https://wasiahmad.github.io/&#41; and [Kai-Wei Chang]&#40;http://web.cs.ucla.edu/~kwchang/&#41;.)
+
+[//]: # ()
+[//]: # (I've also spent time recommending jobs at [LinkedIn]&#40;https://linkedin.com/&#41;, deploying a log monitoring tool at [PayPal]&#40;https://www.paypal.com/&#41;, and building the checkout page at [Ticketmaster]&#40;https://www.ticketmaster.com/&#41;.)
 
 [[Full CV]](assets/cv.pdf)
+<br><br><br><br><br><br><br>
