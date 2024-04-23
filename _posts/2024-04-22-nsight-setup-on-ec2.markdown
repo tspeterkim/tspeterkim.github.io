@@ -59,7 +59,7 @@ to get more information see https://developer.nvidia.com/ERR_NVGPUCTRPERM
 <br>
 #### 3. Give profiling permission to all users on your remote instance.
 
-* On your EC2 instance, run `sudo vim /etc/modprobe.d/nvidia.conf`. Add the following line:
+* On your remote instance, run `sudo vim /etc/modprobe.d/nvidia.conf`. Add the following line:
 
 ```commandline
 options nvidia NVreg_RestrictProfilingToAdminUsers=0
