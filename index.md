@@ -6,11 +6,17 @@ layout: home
 comments: false
 ---
 
-<img src="../images/me.jpg" alt="me" style="width:200px; float:left; padding-right:20px;"/>
+<div class="container" style="display: flex; justify-content: flex-end; width: 100%;">
+    <img src="../images/me.jpg" alt="me" style="width:200px; float:left; padding-right:20px;"/>
 
-I like ML and CUDA. I also like being useful.
-
-I currently work at Coupang Play, training recommendation models and building artwork generators.
+    <p>
+    I like ML and CUDA. I also like being useful.
+    <br><br>
+    I currently work at Coupang Play, training recommendation models and building artwork generators.
+    <br><br>
+    <a href="assets/cv.pdf">[Full CV]</a>
+    </p>
+</div>
 
 
 [//]: # (I am a Senior ML Engineer at [Coupang Play]&#40;https://www.coupangplay.com/&#41;, building the video recommendation system for the most popular South Korean streaming service.)
@@ -24,5 +30,6 @@ I currently work at Coupang Play, training recommendation models and building ar
 [//]: # ()
 [//]: # (I've also spent time recommending jobs at [LinkedIn]&#40;https://linkedin.com/&#41;, deploying a log monitoring tool at [PayPal]&#40;https://www.paypal.com/&#41;, and building the checkout page at [Ticketmaster]&#40;https://www.ticketmaster.com/&#41;.)
 
-[[Full CV]](assets/cv.pdf)
-<br><br><br><br><br><br><br>
+[//]: # ([[Full CV]]&#40;assets/cv.pdf&#41;)
+
+[//]: # (<br><br><br><br><br><br><br>)
