@@ -9,6 +9,8 @@ categories: jekyll update
 {% include blogposts.css %}
 </style>
 
+[<a href="https://news.ycombinator.com/item?id=40014711">Hacker News discussion</a>]
+
 On my journey to learn CUDA, I decided to tackle the [One Billion Row Challenge](https://1brc.dev/) with it.
 
 <img src="/images/cuda-1brc/1brc.png" width="500" style="margin: 0 auto; display: block; "/>
