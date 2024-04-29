@@ -10,7 +10,7 @@ comments: false
     <img src="../images/me.jpg" alt="me" style="width:200px; float:left; padding-right:20px;"/>
 
     <p>
-        I like ML and CUDA. I also like being useful.
+        I like ML and CUDA. Above all, I like being useful.
         <br><br>
         I currently work at Coupang Play, training recommendation models and building artwork generators.
         <br><br>
