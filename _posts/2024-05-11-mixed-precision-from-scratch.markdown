@@ -53,12 +53,12 @@ Since `grad` is now FP16, it can become too small to be represented in FP16
 (any value smaller than 2^-24). When the gradient is less than 2^-24, it underflows to 0 and makes `update` = 0, causing
 our model to stop learning.
 
-Remember, we also made `weight` FP16 too. So even if we somehow preserved `update` to express the too-small-for-FP16
-values, adding it to an FP16 tensor like `weight` will cause no change in our weight values.
+Remember, we also made `parameters` FP16 too. So even if we somehow preserved `update` to express the too-small-for-FP16
+values, adding it to an FP16 tensor like `p` will cause no change in our weight values.
 
-FP16 sacrifices numerical stability (fancy word for over/underflowing easily) for reduced memory footprint. So how does
-Mixed Precision Training overcome this trade-off? As the [original paper](https://arxiv.org/pdf/1710.03740) outlines,
-it offers three solutions.
+**FP16 sacrifices numerical stability (fancy word for over/underflowing easily) for reduced memory footprint.** 
+So how does Mixed Precision Training overcome this trade-off? As the [original paper](https://arxiv.org/pdf/1710.03740)
+outlines, it offers three solutions.
 
 Let's go through them one by one, grounding each concept by using it train a simple 2-layer MLP on MNIST.
 
@@ -223,14 +223,14 @@ First, we call `cublasGemmEx` with different parameters based on the precision t
 does it too in essence, through [dispatching](http://blog.ezyang.com/2019/05/pytorch-internals/)). 
 For FP16 tensors, we set the [cudaDataType](https://docs.nvidia.com/cuda/cublas/#cudadatatype-t) as `CUDA_R_16F`, 
 which will read and write FP16 results. However, by specifying
-the [cublasComputeType](https://docs.nvidia.com/cuda/cublas/#cublascomputetype-t) as`CUBLAS_COMPUTE_32F`, we ask for 
-the dot-products to accumulate as FP32.
+the [cublasComputeType](https://docs.nvidia.com/cuda/cublas/#cublascomputetype-t) as `CUBLAS_COMPUTE_32F`,
+the dot-products are accumulated as FP32.
 **Doing this mixed precision arithmetic allows us to retain numerical stability in our FP16 matmults.**
 
-In my final code, I load and call cuBLAS like this:
+In my final code, I load and call cuBLAS through a PyTorch extension:
 
 ```python
-# load mixed precision training CUDA kernels
+# load matmult CUDA call as extension
 mpt = load(name='mixed_precision_training', sources=['main.cpp', 'matmult.cu'],
            extra_cuda_cflags=['-O2', '-lcublas'])
 
@@ -294,14 +294,14 @@ Wow, mixed precision training is 2x faster and uses 2x less memory!
 
 If you made it this far, you've now seen everything that mixed precision training has to offer. It can be reduced 
 to training with lower precision tensors to decrease memory usage, while compensating for the numerical 
-instability through three approaches - loss scaling, fp32 master weights, mixed precision arithmetic.
+instability through three approaches - loss scaling, fp32 master weights, and mixed precision arithmetic.
 
 Most importantly, you saw the CUDA code that activates hardware-accelerated matmults through Tensor Cores. 
-This is what makes GPUs go brrr. Now you understand why mixed precision training is a non-optional
-endeavor for training larger and larger neural nets: it is because we want to exploit these Tensor Cores.
+This is what makes GPUs go brrr. Now you understand why mixed precision training is basically a **necessity**
+for training larger and larger neural nets: it is because we want to exploit these Tensor Cores.
 
 Thanks for reading, and I hope now you really understand mixed precision training.
 
-Check out my full code on [Github](https://github.com/tspeterkim/mixed-precision-from-scratch).
+You can check out my full implementation on [Github](https://github.com/tspeterkim/mixed-precision-from-scratch).
 
 {% include disqus.html %}
