@@ -16,6 +16,6 @@ comments: false
         <br><br>
         Previously, I worked for Coupang, training video recommendation models and building artwork generators.
         <br><br>
-        <a href="assets/cv.pdf">[Full CV]</a>
+        <a href="assets/resume.pdf">[Full Resume]</a>
     </p>
 </div>
