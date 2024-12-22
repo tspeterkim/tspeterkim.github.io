@@ -93,7 +93,7 @@ But all I really felt was an overwhelming sense of doom that I would probably no
 Like the devil, a peer approached me that he was willing to share his test code that helped him get 100%. It was tempting. But eventually, I realized that using that code to find my bugs would deprive me of the learning opportunity for me to struggle and discover the solution on my own. I politely declined. I chose my education over getting a good grade. I did ask him for high-level hints though :)
 
 <img src="/images/student-again/staying-fine.png" width="300" style="margin: 0 auto; display: block; "/>
-<center><p style="color: #555;font-size: 14px;">After struggling for one more day, I eventually ended up with a 70%. But it's fine. I learned a lot and that's what matters despite what my grades say.</p></center>
+<center><p style="color: #555;font-size: 14px;">As long as you're learning, it really is fine. Even if your grades don't say so.</p></center>
 
 ## Looking forward
 
