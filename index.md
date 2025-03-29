@@ -12,7 +12,7 @@ comments: false
     <p>
         I like machine learning and systems. Above all, I like being useful.
         <br><br>
-        I'm a masters student in ECE at UIUC, learning everything I can to make GPUs go brrr.
+        I'm a masters student in ECE at UIUC, learning how to make GPUs go brrr - starting from the hardware level.
         <br><br>
         Previously, I worked for Coupang, training video recommendation models and building artwork generators.
         <br><br>
