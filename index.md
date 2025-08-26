@@ -12,7 +12,7 @@ comments: false
     <p>
         I like machine learning and systems. Above all, I like being useful.
         <br><br>
-        I'm a masters student in ECE at UIUC, learning how to make ML Accelerators go brrr - starting from the <a href="assets/mp-ooo-report.pdf" target="_blank">hardware</a> <a href="https://github.com/teaLake/vortex/commit/25859c46f9e0e8f56705dd67154bcc8e592f1e6d" target="_blank">level</a>.
+        I'm a masters student in ECE at UIUC, learning how to make ML Accelerators go brrr - starting from the hardware level.
         <br><br>
         Most recently, I was on the Inference team at Annapurna Labs, <a href="https://github.com/aws-neuron/nki-samples/pull/79" target="_blank">writing NKI kernels</a> and hacking compilers to achieve a 2M-token context length on AWS NeuronX.
         <br><br>
