@@ -351,4 +351,4 @@ baseline, of course)
 Still, no regrets taking on the challenge. I got to experience CUDA's limitations first-hand, and that was 
 worthwhile. Now I know I should just stick to Tensor matmults like I usually do.
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

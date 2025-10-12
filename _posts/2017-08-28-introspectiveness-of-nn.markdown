@@ -66,4 +66,4 @@ These two things constantly remind me of the introspectiveness of neural network
 [4] “How Does the Brain Work?” National Center for Biotechnology Information, U.S. National Library of Medicine, 29 Dec. 2016, www.ncbi.nlm.nih.gov/pubmedhealth/PMH0072486/. <br>
 [5] Hubel, D. H. & Wiesel, T. N. (1959). Receptive fields of single neurons in the cat's striate cortex. J. Physiol. 148, 574-591.
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

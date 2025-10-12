@@ -79,4 +79,4 @@ Cross your fingers.
 #### 5. Enjoy your Rooflines.
 <img src="/images/nsight-ec2/final.png" width="800" style="margin: 0 auto; display: block; "/>
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

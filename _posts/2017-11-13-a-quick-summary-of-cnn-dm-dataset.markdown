@@ -143,4 +143,4 @@ Karl Moritz Hermann, Tomas Kocisky, Edward Grefenstette, Lasse Espeholt, Will Ka
 
 Danqi Chen, Jason Bolton, and Christopher D. Manning. A thorough examination of the cnn/dailymail reading comprehension task. In Association for Computational Linguistics (ACL), 2016.
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

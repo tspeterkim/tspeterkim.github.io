@@ -304,4 +304,4 @@ Thanks for reading, and I hope now you really understand mixed precision trainin
 
 You can check out my full implementation on [Github](https://github.com/tspeterkim/mixed-precision-from-scratch).
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

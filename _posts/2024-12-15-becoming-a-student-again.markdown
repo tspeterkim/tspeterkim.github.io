@@ -105,4 +105,4 @@ Interestingly, I think I will get the most out of school the second time around 
 
 Thank you for always being there to support me through the many stressful nights I went through this semester. Because of you, I'm always reminded that I am really doing this for creating a better life with you, and making as many happy memories along the way.
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->
