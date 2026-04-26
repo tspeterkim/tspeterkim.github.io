@@ -12,9 +12,9 @@ comments: false
     <p>
         I like machine learning and systems. Above all, I like being useful.
         <br><br>
-        I'm a masters student in ECE at UIUC, learning how to make ML Accelerators go brrr - starting from the hardware level.
+        I'm a Systems Research Engineer at Together AI, working on kernels and inference engines.
         <br><br>
-        Most recently, I was on the Inference team at Annapurna Labs, <a href="https://github.com/aws-neuron/nki-samples/pull/79" target="_blank">writing NKI kernels</a> and hacking compilers to achieve a 2M-token context length on AWS NeuronX.
+        Before, I was on the Inference team at Annapurna Labs, <a href="https://github.com/aws-neuron/nki-samples/pull/79" target="_blank">writing NKI kernels</a> and hacking compilers to achieve a 2M-token context length on AWS NeuronX.
         <br><br>
         <a href="assets/resume.pdf" target="_blank">[Full Resume]</a>
     </p>
